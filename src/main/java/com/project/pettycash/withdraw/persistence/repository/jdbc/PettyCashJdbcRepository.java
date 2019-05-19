@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -26,7 +27,7 @@ public class PettyCashJdbcRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	public List<PettyCashVo> findPettyCashAll(String empId) {
+	public List<PettyCashVo> findPettyCashAll(String empId, String status) {
 		StringBuilder sql = new StringBuilder();
 		List<Object> params = new ArrayList<Object>();
 		sql.append(
@@ -49,6 +50,10 @@ public class PettyCashJdbcRepository {
 			sql.append(" AND  PC.EMP_ID=?");
 			params.add(empId);
 		}
+		if (StringUtils.isNotBlank(status)) {
+			sql.append(" AND  PC.STATUS=?");
+			params.add(status);
+		}
 		sql.append(" ORDER BY CRAETE_DATETIME DESC");
 		return jdbcTemplate.query(sql.toString(), params.toArray(), pettyCashRowMapper);
 	}
@@ -65,8 +70,8 @@ public class PettyCashJdbcRepository {
 			vo.setStatus(rs.getString("STATUS"));
 			vo.setStatusDesc(rs.getString("STATUS_DESC"));
 
-			String createdDate = ConvertDateUtils.formatDateToString(rs.getDate("CRAETE_DATETIME"),
-					ConvertDateUtils.DD_MM_YYYY, ConvertDateUtils.LOCAL_EN);
+			String createdDate = ConvertDateUtils.formatDateToString(rs.getTimestamp("CRAETE_DATETIME"),
+					ConvertDateUtils.DD_MM_YYYY_HHMMSS, ConvertDateUtils.LOCAL_EN);
 			vo.setCreateDatetime(createdDate);
 
 			vo.setName(rs.getString("FIRSHNAME") + " " + rs.getString("SURNAME"));

@@ -32,13 +32,13 @@ public class PettyCashController {
 	@Autowired
 	private PettyCashService pettyCashService;
 
-	@GetMapping("/")
+	@PostMapping("/findPettey")
 	@ResponseBody
-	public ResponseData<PettyResVo> list() {
+	public ResponseData<PettyResVo> list(@RequestBody PettyCashVo formVo) {
 		log.info("PettyCashController method list...");
 		ResponseData<PettyResVo> response = new ResponseData<>();
 		try {
-			response.setData(pettyCashService.list());
+			response.setData(pettyCashService.list(formVo));
 			response.setMessage(CommonConstant.RESPONSE_MESSAGE.SUCCESS);
 			response.setStatus(CommonConstant.RESPONSE_STATUS.SUCCESS);
 		} catch (Exception e) {

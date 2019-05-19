@@ -31,10 +31,10 @@ public class PettyCashService {
 	@Autowired
 	private EmployeeService employeeService;
 
-	public PettyResVo list() {
+	public PettyResVo list(PettyCashVo formVo) {
 		String empId = employeeService.getEmployeeId();
 		PettyResVo vo = pettyCashJdbcRepository.count(empId);
-		List<PettyCashVo> list = pettyCashJdbcRepository.findPettyCashAll(empId);
+		List<PettyCashVo> list = pettyCashJdbcRepository.findPettyCashAll(empId,formVo.getStatus());
 
 		vo.setDatas(list);
 		return vo;

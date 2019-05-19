@@ -31,25 +31,13 @@ public class ConvertDateUtils {
 	public static final String YYYY_MM_DD = "yyyy-MM-dd";
 	public static final String YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
 	public static final String DD_MM_YYYY_HHMMSS = "dd/MM/yyyy HH:mm:ss";
+	public static final String DD_MMM_YYYY_HHMMSS = "dd/MMM/yyyy HH:mm:ss";
 
 	public static final Locale LOCAL_TH = new Locale("th", "TH");
 	public static final Locale LOCAL_EN = new Locale("en", "US");
 
 	public static final String FULL_MONTH = "FULL_MONTH";
 	public static final String SHORT_MONTH = "SHORT_MONTH";
-
-	public static final String[] fullMonth = { "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม" };
-	public static final String[] shortMonth = { "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค." };
-
-	public static String getMonthThai(int month, String typeMonth) {
-		if (FULL_MONTH.equals(typeMonth)) {
-			return fullMonth[month].toString();
-		}
-		if (SHORT_MONTH.equals(typeMonth)) {
-			return shortMonth[month].toString();
-		}
-		return null;
-	}
 
 	public static String formatDateToString(Date date, String patten, Locale locale) {
 		String dateString = "";
@@ -90,7 +78,5 @@ public class ConvertDateUtils {
 		}
 		return dateString;
 	}
-
-	
 
 }

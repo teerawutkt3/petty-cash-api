@@ -5,7 +5,25 @@ import java.util.List;
 public class UserProfileVo {
 
 	private String username;
+	private String name;
+	private String department;
 	private List<String> role;
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getUsername() {
 		return username;
