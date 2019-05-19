@@ -31,14 +31,14 @@ public class PettyCashJdbcRepository {
 		StringBuilder sql = new StringBuilder();
 		List<Object> params = new ArrayList<Object>();
 		sql.append(
-				" SELECT PC.*, PG.DESCRIPTION AS STATUS_DESC, EM.MANAGER_ID, EM.FIRSHNAME, EM.SURNAME  FROM PETTY_CASH PC ");
+				" SELECT PC.*, PG.DESCRIPTION AS STATUS_DESC, EM.MANAGER_ID, EM.FIRSHNAME, EM.SURNAME, EM.STATUS AS EMPLOYEE_STATUS  FROM PETTY_CASH PC ");
 		sql.append(" INNER JOIN PARAM_GROUP PG ON PC.STATUS=PG.VALUE ");
 		sql.append(" INNER JOIN EMPLOYEE EM ON EM.ID=PC.EMP_ID WHERE PG.TYPE='PETTY_CASH_STATUS'");
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Collection<? extends GrantedAuthority> roles = auth.getAuthorities();
 
-		if (roles.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAMENT))) {
+		if (roles.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAGER))) {
 			sql.append(" AND  EM.MANAGER_ID=?");
 			params.add(empId);
 		}
@@ -69,7 +69,7 @@ public class PettyCashJdbcRepository {
 			vo.setAmount(rs.getString("amount"));
 			vo.setStatus(rs.getString("STATUS"));
 			vo.setStatusDesc(rs.getString("STATUS_DESC"));
-
+			vo.setEmployeeStatus(rs.getString("EMPLOYEE_STATUS"));
 			String createdDate = ConvertDateUtils.formatDateToString(rs.getTimestamp("CRAETE_DATETIME"),
 					ConvertDateUtils.DD_MM_YYYY_HHMMSS, ConvertDateUtils.LOCAL_EN);
 			vo.setCreateDatetime(createdDate);
@@ -89,54 +89,59 @@ public class PettyCashJdbcRepository {
 
 		sql.append(" SELECT  ");
 		sql.append("    COUNT(PC.STATUS) AS COUNTALL,");
-		sql.append(" 	(SELECT COUNT(PC.STATUS) FROM PETTY_CASH PC INNER JOIN EMPLOYEE EM ON EM.ID=PC.EMP_ID WHERE PC.STATUS = '1'");
-		if (!roles.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAMENT))) {
+		sql.append(
+				" 	(SELECT COUNT(PC.STATUS) FROM PETTY_CASH PC INNER JOIN EMPLOYEE EM ON EM.ID=PC.EMP_ID WHERE PC.STATUS = '1'");
+		if (!roles.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAGER))) {
 			sql.append(" AND  PC.EMP_ID=? ");
 			params.add(empId);
-		}else {
+		} else {
 			sql.append(" AND EM.MANAGER_ID=? ");
 			params.add(empId);
 		}
 		sql.append(" ) AS COUNTWAIT, ");
-		sql.append(" 	(SELECT COUNT(PC.STATUS) FROM PETTY_CASH PC INNER JOIN EMPLOYEE EM ON EM.ID=PC.EMP_ID WHERE PC.STATUS = '2'");
-		if (!roles.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAMENT))) {
+		sql.append(
+				" 	(SELECT COUNT(PC.STATUS) FROM PETTY_CASH PC INNER JOIN EMPLOYEE EM ON EM.ID=PC.EMP_ID WHERE PC.STATUS = '2'");
+		if (!roles.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAGER))) {
 			sql.append(" AND PC. EMP_ID=? ");
 			params.add(empId);
-		}else {
+		} else {
 			sql.append(" AND EM.MANAGER_ID=? ");
 			params.add(empId);
 		}
 		sql.append(" ) AS COUNTAPROVE, ");
-		sql.append(" 	(SELECT COUNT(PC.STATUS) FROM PETTY_CASH  PC INNER JOIN EMPLOYEE EM ON EM.ID=PC.EMP_ID WHERE PC.STATUS = '3'");
-		if (!roles.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAMENT))) {
+		sql.append(
+				" 	(SELECT COUNT(PC.STATUS) FROM PETTY_CASH  PC INNER JOIN EMPLOYEE EM ON EM.ID=PC.EMP_ID WHERE PC.STATUS = '3'");
+		if (!roles.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAGER))) {
 			sql.append(" AND  PC.EMP_ID=? ");
 			params.add(empId);
-		}else {
+		} else {
 			sql.append(" AND EM.MANAGER_ID=? ");
 			params.add(empId);
 		}
 		sql.append(" ) AS COUNTNOTAPPROVE, ");
-		sql.append(" 	(SELECT COUNT(PC.STATUS) FROM PETTY_CASH PC INNER JOIN EMPLOYEE EM ON EM.ID=PC.EMP_ID WHERE PC.STATUS = '4'");
-		if (!roles.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAMENT))) {
+		sql.append(
+				" 	(SELECT COUNT(PC.STATUS) FROM PETTY_CASH PC INNER JOIN EMPLOYEE EM ON EM.ID=PC.EMP_ID WHERE PC.STATUS = '4'");
+		if (!roles.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAGER))) {
 			sql.append(" AND  PC.EMP_ID=? ");
 			params.add(empId);
-		}else {
+		} else {
 			sql.append(" AND EM.MANAGER_ID=? ");
 			params.add(empId);
 		}
 		sql.append(" ) AS COUNTCANCEL, ");
-		sql.append(" 	(SELECT COUNT(PC.STATUS) FROM PETTY_CASH  PC INNER JOIN EMPLOYEE EM ON EM.ID=PC.EMP_ID WHERE PC.STATUS = '5'");
-		if (!roles.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAMENT))) {
+		sql.append(
+				" 	(SELECT COUNT(PC.STATUS) FROM PETTY_CASH  PC INNER JOIN EMPLOYEE EM ON EM.ID=PC.EMP_ID WHERE PC.STATUS = '5'");
+		if (!roles.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAGER))) {
 			sql.append(" AND  PC.EMP_ID=? ");
 			params.add(empId);
-		}else {
+		} else {
 			sql.append(" AND EM.MANAGER_ID=? ");
 			params.add(empId);
 		}
 		sql.append(" ) AS COUNTSUCCESS ");
 		sql.append(" FROM PETTY_CASH PC INNER JOIN EMPLOYEE EM ON EM.ID=PC.EMP_ID  WHERE 1=1 ");
 
-		if (roles.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAMENT))) {
+		if (roles.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAGER))) {
 			sql.append(" AND  EM.MANAGER_ID=?");
 			params.add(empId);
 		}

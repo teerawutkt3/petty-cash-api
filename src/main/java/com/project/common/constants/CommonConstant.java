@@ -42,7 +42,7 @@ public class CommonConstant {
 
 	public static final class ROLE {
 		public static final String NORMAL = "ROLE_NORMAL";
-		public static final String MANAMENT = "ROLE_MANAMENT";
+		public static final String MANAGER = "ROLE_MANAMENT";
 		public static final String PETTY_CASH = "ROLE_PETTY_CASH";
 	}
 }

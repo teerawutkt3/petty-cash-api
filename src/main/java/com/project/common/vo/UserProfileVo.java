@@ -7,7 +7,16 @@ public class UserProfileVo {
 	private String username;
 	private String name;
 	private String department;
+	private String userStatus;
 	private List<String> role;
+
+	public String getUserStatus() {
+		return userStatus;
+	}
+
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
+	}
 
 	public String getDepartment() {
 		return department;

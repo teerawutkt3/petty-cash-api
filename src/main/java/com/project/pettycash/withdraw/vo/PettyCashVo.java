@@ -11,10 +11,19 @@ public class PettyCashVo {
 	private String description;
 	private String amount;
 	private String status;
+	private String employeeStatus;
 	private String statusDesc;
 	private String createDatetime;
 	private String updateDatetime;
 	private String name;
+
+	public String getEmployeeStatus() {
+		return employeeStatus;
+	}
+
+	public void setEmployeeStatus(String employeeStatus) {
+		this.employeeStatus = employeeStatus;
+	}
 
 	private List<Integer> ids;
 

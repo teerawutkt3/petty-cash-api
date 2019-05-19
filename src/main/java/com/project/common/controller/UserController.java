@@ -55,6 +55,7 @@ public class UserController {
 			employee = emp.get();
 			userProfile.setName(employee.getFirshname() + " " + employee.getSurname());
 			userProfile.setDepartment(employee.getDepartment());
+			userProfile.setUserStatus(employee.getStatus());
 		}
 
 		userProfile.setUsername(username);
