@@ -34,7 +34,7 @@ public class PettyCashService {
 	public PettyResVo list(PettyCashVo formVo) {
 		String empId = employeeService.getEmployeeId();
 		PettyResVo vo = pettyCashJdbcRepository.count(empId);
-		List<PettyCashVo> list = pettyCashJdbcRepository.findPettyCashAll(empId,formVo.getStatus());
+		List<PettyCashVo> list = pettyCashJdbcRepository.findPettyCashAll(empId, formVo.getStatus());
 
 		vo.setDatas(list);
 		return vo;
@@ -72,10 +72,14 @@ public class PettyCashService {
 		PettyCash entity = null;
 		if (pettyCash.isPresent()) {
 			entity = pettyCash.get();
+			if (!entity.getStatus().equals(CommonConstant.PETTY_CASH_STATUS.CANCEL)
+					&& !entity.getStatus().equals(CommonConstant.PETTY_CASH_STATUS.APPROVE)
+					&& !entity.getStatus().equals(CommonConstant.PETTY_CASH_STATUS.SUCCESS)) {
+				entity.setStatus(status);
+				entity.setUpdateDatetime(new Date());
+				pettyCashReposirory.save(entity);
+			}
 
-			entity.setStatus(status);
-			entity.setUpdateDatetime(new Date());
-			pettyCashReposirory.save(entity);
 		}
 	}
 
