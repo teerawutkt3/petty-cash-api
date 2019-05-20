@@ -95,7 +95,7 @@ public class PettyCashController {
 			response.setStatus(CommonConstant.RESPONSE_STATUS.SUCCESS);
 		} catch (Exception e) {
 			log.error(e.getMessage());
-			response.setMessage(CommonConstant.RESPONSE_MESSAGE.SAVE.FAILED);
+			response.setMessage(CommonConstant.RESPONSE_MESSAGE.ERROR500);
 			response.setStatus(CommonConstant.RESPONSE_STATUS.FAILED);// TODO: handle exception
 		}
 		return response;
@@ -108,6 +108,23 @@ public class PettyCashController {
 		ResponseData<PettyCash> response = new ResponseData<>();
 		try {
 			response.setData(pettyCashService.getForm(id));
+			response.setMessage(CommonConstant.RESPONSE_MESSAGE.SAVE.SUCCESS);
+			response.setStatus(CommonConstant.RESPONSE_STATUS.SUCCESS);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			response.setMessage(CommonConstant.RESPONSE_MESSAGE.SAVE.FAILED);
+			response.setStatus(CommonConstant.RESPONSE_STATUS.FAILED);// TODO: handle exception
+		}
+		return response;
+	}
+	
+	@GetMapping("/detail/{id}")
+	@ResponseBody
+	public ResponseData<PettyCashVo> getDetail(@PathVariable Integer id) {
+		log.info("PettyCashController method getDetail id :{} ", id);
+		ResponseData<PettyCashVo> response = new ResponseData<>();
+		try {
+			response.setData(pettyCashService.getDetail(id));
 			response.setMessage(CommonConstant.RESPONSE_MESSAGE.SAVE.SUCCESS);
 			response.setStatus(CommonConstant.RESPONSE_STATUS.SUCCESS);
 		} catch (Exception e) {

@@ -21,6 +21,12 @@ public class CommonConstant {
 		}
 	}
 
+	public static final class PARAM_TYPE {
+		public static final String JOB_LEVEL = "job_level";
+		public static final String PETTY_CASH_STATUS = "petty_cash_status";
+		public static final String EMPLOYEE_STATUS = "employee_status";
+	}
+
 	public static final class PETTY_CASH_STATUS {
 		public static final String WAIT = "1";
 		public static final String APPROVE = "2";
