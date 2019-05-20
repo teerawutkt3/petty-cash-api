@@ -92,17 +92,21 @@ public class PettyCashService {
 		PettyCash entity = null;
 		if (pettyCash.isPresent()) {
 			entity = pettyCash.get();
-			if (role.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAGER))) {
-				if (!entity.getStatus().equals(CommonConstant.PETTY_CASH_STATUS.CANCEL) && !entity.getStatus().equals(CommonConstant.PETTY_CASH_STATUS.SUCCESS)) {
-					entity.setStatus(status);
-					entity.setUpdateDatetime(new Date());
-					pettyCashReposirory.save(entity);
-				}
-			}else {
-				if (!entity.getStatus().equals(CommonConstant.PETTY_CASH_STATUS.CANCEL) && !entity.getStatus().equals(CommonConstant.PETTY_CASH_STATUS.APPROVE) && !entity.getStatus().equals(CommonConstant.PETTY_CASH_STATUS.SUCCESS)) {
-					entity.setStatus(status);
-					entity.setUpdateDatetime(new Date());
-					pettyCashReposirory.save(entity);
+			String empId = entity.getEmp_id();
+			Optional<Employee> empEntity = employeeRepository.findById(Integer.valueOf(empId));
+			if(!empEntity.get().getStatus().equals(CommonConstant.EMPLOYEE_STATUS.RESIGN)) {
+				if (role.contains(new SimpleGrantedAuthority(CommonConstant.ROLE.MANAGER))) {
+					if (!entity.getStatus().equals(CommonConstant.PETTY_CASH_STATUS.CANCEL) && !entity.getStatus().equals(CommonConstant.PETTY_CASH_STATUS.SUCCESS)) {
+						entity.setStatus(status);
+						entity.setUpdateDatetime(new Date());
+						pettyCashReposirory.save(entity);
+					}
+				}else {
+					if (!entity.getStatus().equals(CommonConstant.PETTY_CASH_STATUS.CANCEL) && !entity.getStatus().equals(CommonConstant.PETTY_CASH_STATUS.APPROVE) && !entity.getStatus().equals(CommonConstant.PETTY_CASH_STATUS.SUCCESS)) {
+						entity.setStatus(status);
+						entity.setUpdateDatetime(new Date());
+						pettyCashReposirory.save(entity);
+					}
 				}
 			}
 		}
@@ -142,8 +146,8 @@ public class PettyCashService {
 				vo.setName(emp.get().getFirshname() + " " + emp.get().getSurname());
 				
 				
-				ParamGroup paramEmp = paramGroupRepository.findByTypeAndValue(CommonConstant.PARAM_TYPE.EMPLOYEE_STATUS, emp.get().getStatus());
-				vo.setEmployeeStatus(paramEmp.getDescription());
+				//ParamGroup paramEmp = paramGroupRepository.findByTypeAndValue(CommonConstant.PARAM_TYPE.EMPLOYEE_STATUS, emp.get().getStatus());
+				vo.setEmployeeStatus(emp.get().getStatus());
 			}
 
 			String createdDate = ConvertDateUtils.formatDateToString(entiryPetty.getCraeteDatetime(),

@@ -44,7 +44,7 @@ public class PettyCashController {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			response.setMessage(CommonConstant.RESPONSE_MESSAGE.ERROR500);
-			response.setStatus(CommonConstant.RESPONSE_STATUS.FAILED);// TODO: handle exception
+			response.setStatus(CommonConstant.RESPONSE_STATUS.FAILED);
 		}
 		return response;
 	}
@@ -62,7 +62,7 @@ public class PettyCashController {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			response.setMessage(CommonConstant.RESPONSE_MESSAGE.SAVE.FAILED);
-			response.setStatus(CommonConstant.RESPONSE_STATUS.FAILED);// TODO: handle exception
+			response.setStatus(CommonConstant.RESPONSE_STATUS.FAILED);
 		}
 		return response;
 	}
@@ -79,7 +79,7 @@ public class PettyCashController {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			response.setMessage(CommonConstant.RESPONSE_MESSAGE.SAVE.FAILED);
-			response.setStatus(CommonConstant.RESPONSE_STATUS.FAILED);// TODO: handle exception
+			response.setStatus(CommonConstant.RESPONSE_STATUS.FAILED);
 		}
 		return response;
 	}
@@ -96,7 +96,7 @@ public class PettyCashController {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			response.setMessage(CommonConstant.RESPONSE_MESSAGE.ERROR500);
-			response.setStatus(CommonConstant.RESPONSE_STATUS.FAILED);// TODO: handle exception
+			response.setStatus(CommonConstant.RESPONSE_STATUS.FAILED);
 		}
 		return response;
 	}
@@ -113,7 +113,7 @@ public class PettyCashController {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			response.setMessage(CommonConstant.RESPONSE_MESSAGE.SAVE.FAILED);
-			response.setStatus(CommonConstant.RESPONSE_STATUS.FAILED);// TODO: handle exception
+			response.setStatus(CommonConstant.RESPONSE_STATUS.FAILED);
 		}
 		return response;
 	}
@@ -130,7 +130,7 @@ public class PettyCashController {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			response.setMessage(CommonConstant.RESPONSE_MESSAGE.SAVE.FAILED);
-			response.setStatus(CommonConstant.RESPONSE_STATUS.FAILED);// TODO: handle exception
+			response.setStatus(CommonConstant.RESPONSE_STATUS.FAILED);
 		}
 		return response;
 	}
