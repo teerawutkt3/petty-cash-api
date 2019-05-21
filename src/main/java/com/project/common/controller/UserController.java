@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.common.entities.Employee;
-import com.project.common.entities.User;
-import com.project.common.repository.EmployeeRepository;
-import com.project.common.repository.UserRepository;
+import com.project.common.persistence.entities.Employee;
+import com.project.common.persistence.entities.User;
+import com.project.common.persistence.repository.EmployeeRepository;
+import com.project.common.persistence.repository.UserRepository;
 import com.project.common.vo.UserProfileVo;
 
 @RestController

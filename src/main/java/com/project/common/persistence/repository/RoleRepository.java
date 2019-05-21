@@ -1,8 +1,8 @@
-package com.project.common.repository;
+package com.project.common.persistence.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.project.common.entities.Role;
+import com.project.common.persistence.entities.Role;
 
 public interface RoleRepository extends CrudRepository<Role, Integer> {
 

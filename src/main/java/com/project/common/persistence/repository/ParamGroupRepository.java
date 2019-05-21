@@ -1,8 +1,8 @@
-package com.project.common.repository;
+package com.project.common.persistence.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.project.common.entities.ParamGroup;
+import com.project.common.persistence.entities.ParamGroup;
 
 public interface ParamGroupRepository extends CrudRepository<ParamGroup, Integer>{
 	

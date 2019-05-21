@@ -5,8 +5,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.project.common.entities.User;
-import com.project.common.repository.UserRepository;
+import com.project.common.persistence.entities.User;
+import com.project.common.persistence.repository.UserRepository;
 
 @Service
 public class EmployeeService {

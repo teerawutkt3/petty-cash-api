@@ -1,4 +1,4 @@
-package com.project.common.entities;
+package com.project.common.persistence.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,19 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ROLE_ASSIGNMENT")
-public class RoleAssignment {
+@Table(name = "RUNNING_NUMBER")
+public class RunningNumber {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID")
 	private Integer id;
-
-	@Column(name = "USER_ID")
-	private Integer userId;
-
-	@Column(name = "ROLE_ID")
-	private Integer roleId;
+//	@Column(name = "NUMBER")
+	private String number;
+	@Column(name = "YEAR")
+	private String year;
 
 	public Integer getId() {
 		return id;
@@ -30,20 +28,20 @@ public class RoleAssignment {
 		this.id = id;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public String getNumber() {
+		return number;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
-	public Integer getRoleId() {
-		return roleId;
+	public String getYear() {
+		return year;
 	}
 
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
+	public void setYear(String year) {
+		this.year = year;
 	}
 
 }

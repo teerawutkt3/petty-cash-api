@@ -5,8 +5,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.common.entities.RunningNumber;
-import com.project.common.repository.RunningNumberRepository;
+import com.project.common.persistence.entities.RunningNumber;
+import com.project.common.persistence.repository.RunningNumberRepository;
 import com.project.common.utils.ConvertDateUtils;
 
 @Service

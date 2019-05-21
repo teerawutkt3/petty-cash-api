@@ -12,11 +12,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.project.common.entities.Role;
-import com.project.common.entities.RoleAssignment;
-import com.project.common.repository.RoleAssignmentRepository;
-import com.project.common.repository.RoleRepository;
-import com.project.common.repository.UserRepository;
+import com.project.common.persistence.entities.Role;
+import com.project.common.persistence.entities.RoleAssignment;
+import com.project.common.persistence.repository.RoleAssignmentRepository;
+import com.project.common.persistence.repository.RoleRepository;
+import com.project.common.persistence.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceCustom implements UserDetailsService {
@@ -33,7 +33,7 @@ public class UserDetailsServiceCustom implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		com.project.common.entities.User user = userRepository.findByUsername(username);
+		com.project.common.persistence.entities.User user = userRepository.findByUsername(username);
 		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
 		if (user == null) {

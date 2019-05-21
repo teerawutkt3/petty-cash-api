@@ -1,4 +1,4 @@
-package com.project.common.entities;
+package com.project.common.persistence.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,17 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "param_group")
-public class ParamGroup {
+@Table(name = "ROLE")
+public class Role {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID")
 	private Integer id;
-	@Column(name = "TYPE")
-	private String type;
-	@Column(name = "VALUE")
-	private String value;
+
+	@Column(name = "ROLE_NAME")
+	private String roleName;
+
 	@Column(name = "DESCRIPTION")
 	private String description;
 
@@ -30,20 +30,12 @@ public class ParamGroup {
 		this.id = id;
 	}
 
-	public String getType() {
-		return type;
+	public String getRoleName() {
+		return roleName;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 
 	public String getDescription() {

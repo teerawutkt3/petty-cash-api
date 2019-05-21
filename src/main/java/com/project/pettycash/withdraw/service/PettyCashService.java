@@ -17,10 +17,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.project.common.constants.CommonConstant;
-import com.project.common.entities.Employee;
-import com.project.common.entities.ParamGroup;
-import com.project.common.repository.EmployeeRepository;
-import com.project.common.repository.ParamGroupRepository;
+import com.project.common.persistence.entities.Employee;
+import com.project.common.persistence.entities.ParamGroup;
+import com.project.common.persistence.repository.EmployeeRepository;
+import com.project.common.persistence.repository.ParamGroupRepository;
 import com.project.common.service.EmployeeService;
 import com.project.common.utils.ConvertDateUtils;
 import com.project.pettycash.withdraw.persistence.entities.PettyCash;
